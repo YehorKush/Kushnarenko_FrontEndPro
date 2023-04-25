@@ -44,3 +44,15 @@ let name2 = new String("John");
 
 let loh = {};
 console.log(loh.__proto__ === Object.prototype); // true
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const person = new Person("John", 20);
+
+let prototypeObj = Object.getPrototypeOf(person);
+console.log("Prototype: ", prototypeObj);
+
+console.log({}.prototype === {}.__proto__); // false
