@@ -5,10 +5,14 @@
 // отримання комкоментарів до посту.
 // Зробити завдання використовуючи проміси, перехопити помилки.
 
-let id = 0;
+let id = 100;
 
-while (id < 1 || id > 100) {
-  id = prompt("Введіть id (від 1 до 100)");
-}
 
-console.log(id);
+fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  .then(response => response.json())
+  .then(post => {
+    console.log(post);
+  })
+  .catch(error => {
+    console.log(error);
+  });
