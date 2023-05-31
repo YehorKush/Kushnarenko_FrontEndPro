@@ -5,14 +5,46 @@
 // отримання комкоментарів до посту.
 // Зробити завдання використовуючи проміси, перехопити помилки.
 
-let id = 100;
+let url;
 
+function validateId() {
+  const input = document.getElementById("idInput");
+  const id = input.value;
 
-fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-  .then(response => response.json())
-  .then(post => {
-    console.log(post);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+  if (id < 1 || id > 100) {
+    validationMessage.textContent = "Введить число від 1 до 100.";
+  } else {
+    validationMessage.textContent = "Значення збережено";
+  }
+  url = "https://jsonplaceholder.typicode.com/todos/" + id;
+}
+
+if (url == undefined) url = "https://jsonplaceholder.typicode.com/todos/100";
+
+if (url) {
+}
+setTimeout(() => {
+  function delay(ms) {
+    return new Promise((r) =>
+      setTimeout(() => {
+        r();
+      }, ms)
+    );
+  }
+
+  function fetchToDos() {
+    console.log("Search...");
+    return delay(500)
+      .then(() => fetch(url))
+      .then((response) => response.json());
+  }
+
+  fetchToDos()
+    .then((data) => {
+      console.log("Data:", data);
+    })
+    .catch((e) => console.log(e))
+    .finally(() => {
+      console.log("End");
+    });
+}, 5000);

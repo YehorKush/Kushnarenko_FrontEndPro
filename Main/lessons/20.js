@@ -1,5 +1,44 @@
 // Асинхронность, промисы
 
+// Promise - это объект, который представляет асинхронную операцию, которая
+// может быть завершена результатом или ошибкой. Они идеально подходят
+// для выполнения цепочки асинхронных задач.
+
+// Промис имеет три возможных состояния:
+
+// Ожидание (pending): Исходное состояние промиса, когда асинхронная
+// операция выполняется.
+
+// Выполнено (fulfilled): Состояние промиса, когда асинхронная операция
+// успешно завершена. Промис переходит в это состояние с помощью функции
+// resolve.
+
+// Отклонено (rejected): Состояние промиса, когда асинхронная операция
+// завершилась с ошибкой. Промис переходит в это состояние с помощью
+// функции reject.
+
+// let p = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("ты не бомж");
+//   }, 200);
+// });
+
+// console.log(p);
+
+// setTimeout(() => {
+//   console.log(p);
+// }, 201);
+
+// p.then((result) => {
+//   console.log(result);
+// })
+//   .catch((error) => {
+//     console.error("Ошибка:", error); // Обрабатываем отклонение промиса
+//   })
+//   .finally(() => {
+//     console.log("Конец"); // Выполняем код в любом случае
+//   });
+
 // function asynkOperation(callback) {
 //   setTimeout(function () {
 //     callback(null, "fine");
@@ -122,17 +161,18 @@
 // asynk
 // await
 
-function wait(ms) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("In promise");
-    }, ms);
-  });
-}
+// function wait(ms) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("In promise");
+//     }, ms);
+//   });
+// }
 
-function doSomething() {
-  let result = wait(2000);
-  console.log("Result: ", result);
-}
+// function doSomething() {
+//   let result = wait(2000);
+//   console.log("Result: ", result);
+// }
 
-doSomething()
+// doSomething()
+
