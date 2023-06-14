@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>27 Дз</title>
+  </head>
+  <body>
+    <input id="1" type="text" class="space" />
+    <script>
+      let space = document.getElementById("1");
+
+      space.addEventListener("mouseover", () => {
+        let block = document.createElement("div");
+        let img = document.createElement("img");
+        block.setAttribute("id", "2");
+        img.setAttribute("src", "/Main/images/goofy_ahh.jpg");
+        img.setAttribute("id", "3");
+        document.body.appendChild(block);
+        block.appendChild(img);
+      });
+
+      space.addEventListener("mouseout", () => {
+        document.getElementById("2").remove();
+      });
+    </script>
+    <style>
+      .space {
+        height: 150px;
+        width: 150px;
+        background-color: #120087;
+      }
+    </style>
+  </body>
+</html>
