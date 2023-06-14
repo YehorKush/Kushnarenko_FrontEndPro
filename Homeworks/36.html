@@ -8,19 +8,33 @@
     <title>36 Заняття</title>
   </head>
   <body>
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>
-        3
-        <ul>
-          <li>3.1</li>
-          <li>3.2</li>
-          <li>3.3</li>
-        </ul>
-      </li>
-      <li>4</li>
-    </ul>
-    <script></script>
+    <script>
+      function generateList(array) {
+        let list = document.createElement("ul");
+        document.body.appendChild(list);
+
+        array.forEach((elem) => {
+          if (typeof elem === "number") {
+            let item = document.createElement("li");
+            item.textContent = elem;
+            list.appendChild(item);
+            console.log(elem);
+          } else {
+            let Podlist = document.createElement("ul");
+            list.appendChild(Podlist);
+
+            elem.forEach((podElem) => {
+              let Poditem = document.createElement("li");
+              Poditem.textContent = podElem;
+              Podlist.appendChild(Poditem);
+              console.log(elem);
+            });
+          }
+        });
+      }
+
+      let arr = [1, 2, 3, 4, [4.1, 4.2, 4.3], 5, 6, [6.1, 6.2]];
+      generateList(arr);
+    </script>
   </body>
 </html>
