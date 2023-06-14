@@ -5,46 +5,26 @@
 // отримання комкоментарів до посту.
 // Зробити завдання використовуючи проміси, перехопити помилки.
 
-let url;
-
-function validateId() {
-  const input = document.getElementById("idInput");
-  const id = input.value;
-
-  if (id < 1 || id > 100) {
-    validationMessage.textContent = "Введить число від 1 до 100.";
-  } else {
-    validationMessage.textContent = "Значення збережено";
-  }
-  url = "https://jsonplaceholder.typicode.com/todos/" + id;
-}
-
-if (url == undefined) url = "https://jsonplaceholder.typicode.com/todos/100";
-
-if (url) {
-}
-setTimeout(() => {
-  function delay(ms) {
-    return new Promise((r) =>
-      setTimeout(() => {
-        r();
-      }, ms)
-    );
+let egor = new Promise((resolve, reject) => {
+  let id = 0;
+  while (!id) {
+    id = prompt("йоу", 15);
   }
 
-  function fetchToDos() {
-    console.log("Search...");
-    return delay(500)
-      .then(() => fetch(url))
-      .then((response) => response.json());
-  }
+  setTimeout(() => {
+    if (id > 0 && id < 101) resolve(id);
+    if (id < 0 || id > 100) reject("wrong number");
+  }, 1000);
+})
 
-  fetchToDos()
-    .then((data) => {
-      console.log("Data:", data);
-    })
-    .catch((e) => console.log(e))
-    .finally(() => {
-      console.log("End");
-    });
-}, 5000);
+  .then((id) => {
+    let url = "https://jsonplaceholder.typicode.com/todos/" + id;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  })
+  .catch((err) => {
+    console.log("Error: ", err);
+  });

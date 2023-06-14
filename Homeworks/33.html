@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>33 Заняття</title>
+  </head>
+  <body>
+    <div id="emojis">
+      <span>💀</span>
+      <span>🥴</span>
+      <span>😳</span>
+      <span>🙃</span>
+      <span>🫣</span>
+    </div>
+    <div id="votes">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <script>
+      let list = document.getElementById("emojis");
+
+      list.addEventListener("click", (event) => {
+        if (event.target.tagName === "SPAN") {
+          console.log(event.target);
+        }
+      });
+    </script>
+  </body>
+</html>

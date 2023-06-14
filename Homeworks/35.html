@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>33 Заняття</title>
+  </head>
+  <body>
+    <span id="space" style="display: inline-block; width: 43px"></span>
+    <img id="img" height="300" alt="" />
+    <button id="Next" onclick="next()">Next</button>
+
+    <script>
+      let image = document.getElementById("img");
+      let number = 1;
+      let src = "/Main/images/cool";
+      let jpg = ".jpg";
+
+      image.src = src + number + jpg;
+
+      function prev() {
+        if (number == 2) {
+          let space = document.createElement("span");
+          space.setAttribute("style", "display: inline-block; width: 43px;");
+          space.setAttribute("id", "space");
+          image.parentNode.insertBefore(space, image);
+          document.getElementById("Prev").remove();
+        }
+        if (number == 6) {
+          let Nextbutton = document.createElement("button");
+          Nextbutton.setAttribute("id", "Next");
+          Nextbutton.setAttribute("onclick", "next()");
+          Nextbutton.textContent = "Next";
+          document.body.appendChild(Nextbutton);
+        }
+
+        number -= 1;
+        image.src = src + number + jpg;
+      }
+
+      function next() {
+        if (number == 1) {
+          let Prevbutton = document.createElement("button");
+          Prevbutton.setAttribute("id", "Prev");
+          Prevbutton.setAttribute("onclick", "prev()");
+          Prevbutton.textContent = "Prev";
+          image.parentNode.insertBefore(Prevbutton, image);
+          document.getElementById("space").remove();
+        }
+        number += 1;
+        image.src = src + number + jpg;
+        if (number == 6) {
+          document.getElementById("Next").remove();
+        }
+      }
+    </script>
+  </body>
+</html>
