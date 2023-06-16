@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>29 Дз</title>
+  </head>
+  <body>
+    <script>
+      let arr = [1, 2, 3, 4, 5, 100, 7, 0, 8, 9];
+      let a = Math.min(...arr);
+      console.log(a);
+      // Для чого ми Math.min викликаємо в контексті Math?
+      // Тому що методи класу Math не можуть працювати з іншими об'єктами,
+      // їм потрібен контекст об'єкту Math, бо вони статичні. Також Math.min
+      // може працювати лише з окремими числовими значеннями, перерахованими
+      // через кому. Тому для роботи з массивом треба викликати метод min
+      // у контексті об'єкту Math за допомогою метода Apply
+    </script>
+    <style></style>
+  </body>
+</html>
