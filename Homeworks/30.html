@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>30 Дз</title>
+  </head>
+  <body>
+    <script>
+      let span = document.createElement("span");
+      document.body.appendChild(span);
+
+      span.textContent = "Зміст";
+      console.log(span.textContent);
+      console.log(span.innerHTML);
+
+      span.innerHTML = "<h6>Новий зміст</h6>";
+      console.log(span.textContent); // тега нема
+      console.log(span.innerHTML); // тег є
+
+      span.innerHTML = "Новий зміст без тегу";
+      console.log(span.textContent);
+      console.log(span.innerHTML);
+
+      // Головна різниця між textContent та innerHTML полягає у тому
+      // що innerHTML звертає увагу на розмітку html усередині стрічки
+      // у той час як textContent обробляє лише текст, незалежно від
+      // змісту стрічки.
+    </script>
+  </body>
+</html>
