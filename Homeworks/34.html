@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>30 Дз</title>
+  </head>
+  <body>
+    <div id="1" class="outer">
+      <div class="inner" onclick="food()"><span>FOOD</span></div>
+      <div class="inner" onclick="drinks()"><span>DRINKS</span></div>
+    </div>
+    <script>
+      function createDiv(id, classs) {
+        let div = document.createElement("div");
+        div.setAttribute("id", id);
+        div.setAttribute("class", classs);
+        document.body.appendChild(div);
+      }
+      function food() {
+        createDiv("2", "outer");
+        let pizza = document.createElement("div");
+        let burger = document.createElement("div");
+        pizza.setAttribute("onclick", "pizza()");
+        burger.setAttribute("onclick", "burger()");
+        pizza.setAttribute("class", "inner");
+        burger.setAttribute("class", "inner");
+        pizza.textContent = "PIZZA";
+        burger.textContent = "BURGER";
+        document.getElementById("2").appendChild(pizza);
+        document.getElementById("2").appendChild(burger);
+      }
+      function drinks() {
+        createDiv("2", "outer");
+        let cola = document.createElement("div");
+        let beer = document.createElement("div");
+        cola.setAttribute("onclick", "cola()");
+        beer.setAttribute("onclick", "beer()");
+        cola.setAttribute("class", "inner");
+        beer.setAttribute("class", "inner");
+        cola.textContent = "COLA";
+        beer.textContent = "BEER";
+        document.getElementById("2").appendChild(cola);
+        document.getElementById("2").appendChild(beer);
+      }
+
+      function pizza() {
+        createDiv("3", "outer");
+        let pizza = document.createElement("div");
+        let info = document.createElement("div");
+        pizza.setAttribute("onclick", "buy('pizza')");
+        pizza.setAttribute("class", "inner");
+        info.setAttribute("class", "inner");
+        pizza.textContent = "Buy pizza";
+        info.textContent = "Info about Pizza...";
+        document.getElementById("3").appendChild(pizza);
+        document.getElementById("3").appendChild(info);
+      }
+      function burger() {
+        createDiv("3", "outer");
+        let burger = document.createElement("div");
+        let info = document.createElement("div");
+        burger.setAttribute("onclick", "buy('burger')");
+        info.setAttribute("class", "inner");
+        burger.setAttribute("class", "inner");
+        burger.textContent = "Buy burger";
+        info.textContent = "Info about Burger...";
+        document.getElementById("3").appendChild(burger);
+        document.getElementById("3").appendChild(info);
+      }
+      function cola() {
+        createDiv("3", "outer");
+        let cola = document.createElement("div");
+        let info = document.createElement("div");
+        cola.setAttribute("onclick", "buy('cola')");
+        cola.setAttribute("class", "inner");
+        info.setAttribute("class", "inner");
+        cola.textContent = "Buy cola";
+        info.textContent = "Info about Cola...";
+        document.getElementById("3").appendChild(cola);
+        document.getElementById("3").appendChild(info);
+      }
+      function beer() {
+        createDiv("3", "outer");
+        let beer = document.createElement("div");
+        let info = document.createElement("div");
+        beer.setAttribute("onclick", "buy('beer')");
+        beer.setAttribute("class", "inner");
+        info.setAttribute("class", "inner");
+        beer.textContent = "Buy beer";
+        info.textContent = "Info about Beer...";
+        document.getElementById("3").appendChild(beer);
+        document.getElementById("3").appendChild(info);
+      }
+
+      function buy(staff) {
+        alert("You have just bought a " + staff + "!");
+        document.getElementById("2").remove();
+        document.getElementById("3").remove();
+      }
+    </script>
+    <style>
+      .outer {
+        display: inline-block;
+        width: 150px;
+        height: 302px;
+        background-color: rgb(92, 44, 44);
+        margin-left: 10px;
+      }
+      .inner {
+        text-align: center;
+        color: rgb(92, 44, 44);
+        display: inline-block;
+        margin-top: 7px;
+        margin-left: 8px;
+        width: 135px;
+        height: 140px;
+        background-color: rgb(255, 255, 255);
+      }
+    </style>
+  </body>
+</html>
