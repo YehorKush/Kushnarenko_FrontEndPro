@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>28 Дз</title>
+  </head>
+  <body>
+    <script>
+      let number = 1;
+      let table = document.createElement("table");
+      document.body.appendChild(table);
+      for (let a = 0; a < 10; a++) {
+        let row = document.createElement("tr");
+        table.appendChild(row);
+        for (let b = 0; b < 10; b++) {
+          let data = document.createElement("td");
+          data.textContent = number;
+          number++;
+          row.appendChild(data);
+        }
+      }
+    </script>
+    <style>
+      table {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </body>
+</html>
