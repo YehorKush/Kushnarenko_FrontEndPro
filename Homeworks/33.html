@@ -9,29 +9,69 @@
     <title>33 Заняття</title>
   </head>
   <body>
+    <div>
+      <button onclick="newCandidate()">New candidate</button>
+    </div>
     <div id="emojis">
-      <span>💀</span>
-      <span>🥴</span>
-      <span>😳</span>
-      <span>🙃</span>
-      <span>🫣</span>
+      <span id="1" class="span">💀</span>
+      <span id="2" class="span">☠️</span>
+      <span id="3" class="span">🥴</span>
+      <span id="4" class="span">🙃</span>
+      <span id="5" class="span">🫣</span>
     </div>
     <div id="votes">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+      <span id="votes1" class="span"></span>
+      <span id="votes2" class="span"></span>
+      <span id="votes3" class="span"></span>
+      <span id="votes4" class="span"></span>
+      <span id="votes5" class="span"></span>
     </div>
 
     <script>
-      let list = document.getElementById("emojis");
+      let counterEmoji = 6;
+      let counterVotes = 6;
+      function newCandidate() 
+      {
+        let a = prompt("Введіть новий емоджи", "🫥");
+        let newEmoji = document.createElement("span");
+        newEmoji.setAttribute("id", counterEmoji);
+        newEmoji.setAttribute("class", "span");
+        newEmoji.textContent = a;
+        document.getElementById("emojis").appendChild(newEmoji);
+        counterEmoji++;
 
-      list.addEventListener("click", (event) => {
-        if (event.target.tagName === "SPAN") {
-          console.log(event.target);
+        let newVotes = document.createElement("span");
+        newVotes.setAttribute("id", "votes" + counterVotes);
+        newVotes.setAttribute("class", "span");
+        document.getElementById("votes").appendChild(newVotes);
+        counterVotes++;
+      }
+
+      document.getElementById("emojis").addEventListener("click", (event) => {
+        let emoji = event.target;
+        if (emoji.tagName === "SPAN") 
+        {
+          let votes = document.getElementById("votes" + emoji.id);
+          if (votes.textContent === null) 
+          {
+            votes.textContent = "1";
+            return;
+          }
+          votes.textContent++;
         }
       });
     </script>
+    <style>
+      button {
+        height: 35px;
+        border-radius: 5px;
+        background-color: rgb(214, 210, 0);
+      }
+      .span {
+        display: inline-block;
+        width: 30px;
+        margin-top: 5px;
+      }
+    </style>
   </body>
 </html>
