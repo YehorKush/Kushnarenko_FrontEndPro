@@ -9,6 +9,16 @@
     <title>25 Заняття</title>
   </head>
   <body>
-    <script></script>
+    <button onclick="reloadPage()">Reloading the page</button>
+    <script>
+      // Объект window это окно браузера. Он содержит такие методы как
+      // document, navigation, размер и положение окна, взаимодействие
+      // с историей вкладки, таймеры, всплывающие окна и тд.
+      // можно перегзагрузить страницу
+      function reloadPage() {
+        location.reload();
+      }
+      console.log(window.screen.width);
+    </script>
   </body>
 </html>
