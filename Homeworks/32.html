@@ -8,6 +8,24 @@
     <title>32 Заняття</title>
   </head>
   <body>
-    <script></script>
+    <button id="input" onclick="input()">INPUT</button>
+    <button id="go" onclick="go()">GO</button>
+    <script>
+      let url = "";
+      function input() {
+        url = prompt("Enter url:", "https://rainfor.me/");
+        if (url.split("//")[0] !== "https:" && url.split("//")[0] !== "http:")
+          url = "http://" + url.split("//")[1];
+      }
+      function go() {
+        window.location.href = url;
+      }
+    </script>
+    <style>
+      button {
+        height: 40px;
+        width: 70px;
+      }
+    </style>
   </body>
 </html>
