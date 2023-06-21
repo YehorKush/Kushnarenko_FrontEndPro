@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>26 Заняття</title>
+  </head>
+  <body>
+    <h1>Checkbox Demo</h1>
+    <form>
+      <input type="checkbox" name="option1" value="1" />
+      <label for="option1">Option 1</label>
+
+      <input type="checkbox" name="option2" value="2" />
+      <label for="option2">Option 2</label>
+
+      <input type="checkbox" name="option3" value="3" />
+      <label for="option3">Option 3</label>
+
+      <input type="button" value="Submit" onclick="displayResults()" />
+    </form>
+    <p id="results"></p>
+    <script>
+      // Checkbox
+      function displayResults() {
+        let checkboxes = document.querySelectorAll('input[type="Checkbox"]');
+        let selectedOptions = [];
+        checkboxes.forEach((checkbox) => {
+          if (checkbox.checked) {
+            selectedOptions.push(checkbox.value);
+          }
+          let resultsParagraph = document.getElementById("results");
+          resultsParagraph.textContent = `Selected options: ${selectedOptions.join(
+            " "
+          )}`;
+        });
+      }
+
+      // Cookies
+      // Session cookies - куки сесии
+      // Persistent cookies - постоянные куки
+    </script>
+  </body>
+</html>
