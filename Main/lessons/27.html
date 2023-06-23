@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>Local storage</title>
+  </head>
+  <body>
+    <h1>Local storage example</h1>
+    <input type="text" id="username-input" placeholder="Enter your name" />
+    <button onclick="saveUsername()">Save</button>
+    <p id="username-display"></p>
+    <script>
+      function saveUsername() {
+        let username = document.getElementById("username-input").value;
+        localStorage.setItem("userName", username);
+        displayUserName();
+      }
+
+      function displayUserName() {
+        let username = localStorage.getItem("userName");
+        let userNameDisplay = document.getElementById("username-display");
+
+        userNameDisplay.textContent = "Username: " + username;
+      }
+
+      displayUserName();
+    </script>
+  </body>
+</html>

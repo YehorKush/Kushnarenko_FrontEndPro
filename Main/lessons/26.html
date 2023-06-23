@@ -10,14 +10,14 @@
   <body>
     <h1>Checkbox Demo</h1>
     <form>
-      <input type="checkbox" name="option1" value="1" />
-      <label for="option1">Option 1</label>
+      <input type="checkbox" name="option1" value="1" id="o1"/>
+      <label for="o1">Option 1</label>
 
-      <input type="checkbox" name="option2" value="2" />
-      <label for="option2">Option 2</label>
+      <input type="checkbox" name="option2" value="2" id="o2"/>
+      <label for="o2">Option 2</label>
 
-      <input type="checkbox" name="option3" value="3" />
-      <label for="option3">Option 3</label>
+      <input type="checkbox" name="option3" value="3" id="o3"/>
+      <label for="o3">Option 3</label>
 
       <input type="button" value="Submit" onclick="displayResults()" />
     </form>
@@ -25,18 +25,26 @@
     <script>
       // Checkbox
       function displayResults() {
+
         let checkboxes = document.querySelectorAll('input[type="Checkbox"]');
         let selectedOptions = [];
+
         checkboxes.forEach((checkbox) => {
+          50
+
           if (checkbox.checked) {
             selectedOptions.push(checkbox.value);
           }
+
           let resultsParagraph = document.getElementById("results");
           resultsParagraph.textContent = `Selected options: ${selectedOptions.join(
             " "
           )}`;
+
         });
       }
+
+      
 
       // Cookies
       // Session cookies - куки сесии
