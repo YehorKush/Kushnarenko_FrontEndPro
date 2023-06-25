@@ -5,119 +5,149 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap"
+      rel="stylesheet"
+    />
     <title>34 Дз</title>
   </head>
   <body>
     <div id="1" class="outer">
-      <div class="inner" onclick="food()"><span>FOOD</span></div>
-      <div class="inner" onclick="drinks()"><span>DRINKS</span></div>
+      <div class="food" id="food" onclick="food()"><span>FOOD</span></div>
+      <div class="drinks" id="drinks" onclick="drinks()">
+        <span>DRINKS</span>
+      </div>
     </div>
     <script>
-      function createDiv(id, classs) {
+      function createOuterDiv(id, classs) {
         let div = document.createElement("div");
         div.setAttribute("id", id);
         div.setAttribute("class", classs);
         document.body.appendChild(div);
       }
+      function createDiv(classs, onclick, text, outerId) {
+        let div = document.createElement("div");
+        div.setAttribute("class", classs);
+        div.setAttribute("onclick", onclick);
+        div.setAttribute("id", classs);
+        div.textContent = text;
+        document.getElementById(outerId).appendChild(div);
+      }
+      function deleteOnclick(id) {
+        document.getElementById(id).setAttribute("onclick", "");
+      }
       function food() {
-        createDiv("2", "outer");
-        let pizza = document.createElement("div");
-        let burger = document.createElement("div");
-        pizza.setAttribute("onclick", "pizza()");
-        burger.setAttribute("onclick", "burger()");
-        pizza.setAttribute("class", "inner");
-        burger.setAttribute("class", "inner");
-        pizza.textContent = "PIZZA";
-        burger.textContent = "BURGER";
-        document.getElementById("2").appendChild(pizza);
-        document.getElementById("2").appendChild(burger);
+        deleteOnclick("drinks");
+        deleteOnclick("food");
+        createOuterDiv("2", "outer");
+        createDiv("pizza", "pizza()", "PIZZA", "2");
+        createDiv("burger", "burger()", "BURGER", "2");
       }
       function drinks() {
-        createDiv("2", "outer");
-        let cola = document.createElement("div");
-        let beer = document.createElement("div");
-        cola.setAttribute("onclick", "cola()");
-        beer.setAttribute("onclick", "beer()");
-        cola.setAttribute("class", "inner");
-        beer.setAttribute("class", "inner");
-        cola.textContent = "COLA";
-        beer.textContent = "BEER";
-        document.getElementById("2").appendChild(cola);
-        document.getElementById("2").appendChild(beer);
+        deleteOnclick("drinks");
+        deleteOnclick("food");
+        createOuterDiv("2", "outer");
+        createDiv("cola", "cola()", "COLA", "2");
+        createDiv("beer", "beer()", "BEER", "2");
       }
 
       function pizza() {
-        createDiv("3", "outer");
-        let pizza = document.createElement("div");
-        let info = document.createElement("div");
-        pizza.setAttribute("onclick", "buy('pizza')");
-        pizza.setAttribute("class", "inner");
-        info.setAttribute("class", "inner");
-        pizza.textContent = "Buy pizza";
-        info.textContent = "Info about Pizza...";
-        document.getElementById("3").appendChild(pizza);
-        document.getElementById("3").appendChild(info);
+        createOuterDiv("3", "outer");
+        createDiv("inner", "buy('pizza')", "Buy pizza", "3");
+        createDiv(
+          "inner",
+          "",
+          "flat base of leavened wheat-based dough topped with tomato paste, cheese, and pepperoni",
+          "3"
+        );
+        deleteOnclick("pizza");
+        deleteOnclick("burger");
       }
       function burger() {
-        createDiv("3", "outer");
-        let burger = document.createElement("div");
-        let info = document.createElement("div");
-        burger.setAttribute("onclick", "buy('burger')");
-        info.setAttribute("class", "inner");
-        burger.setAttribute("class", "inner");
-        burger.textContent = "Buy burger";
-        info.textContent = "Info about Burger...";
-        document.getElementById("3").appendChild(burger);
-        document.getElementById("3").appendChild(info);
+        deleteOnclick("pizza");
+        deleteOnclick("burger");
+        createOuterDiv("3", "outer");
+        createDiv("inner", "buy('burger')", "Buy burger", "3");
+        createDiv(
+          "inner",
+          "",
+          "A patty of ground beef grilled and placed between two halves of a bun",
+          "3"
+        );
       }
       function cola() {
-        createDiv("3", "outer");
-        let cola = document.createElement("div");
-        let info = document.createElement("div");
-        cola.setAttribute("onclick", "buy('cola')");
-        cola.setAttribute("class", "inner");
-        info.setAttribute("class", "inner");
-        cola.textContent = "Buy cola";
-        info.textContent = "Info about Cola...";
-        document.getElementById("3").appendChild(cola);
-        document.getElementById("3").appendChild(info);
+        deleteOnclick("cola");
+        deleteOnclick("beer");
+        createOuterDiv("3", "outer");
+        createDiv("inner", "buy('cola')", "Buy cola", "3");
+        createDiv(
+          "inner",
+          "",
+          "A carbonated, sweetened soft drink and is the world's best-selling soda. ",
+          "3"
+        );
       }
       function beer() {
-        createDiv("3", "outer");
-        let beer = document.createElement("div");
-        let info = document.createElement("div");
-        beer.setAttribute("onclick", "buy('beer')");
-        beer.setAttribute("class", "inner");
-        info.setAttribute("class", "inner");
-        beer.textContent = "Buy beer";
-        info.textContent = "Info about Beer...";
-        document.getElementById("3").appendChild(beer);
-        document.getElementById("3").appendChild(info);
+        deleteOnclick("cola");
+        deleteOnclick("beer");
+        createOuterDiv("3", "outer");
+        createDiv("inner", "buy('beer')", "Buy beer", "3");
+        createDiv(
+          "inner",
+          "",
+          "An alcoholic beverage produced by extracting raw materials with water, boiling, and fermenting.",
+          "3"
+        );
       }
 
       function buy(staff) {
         alert("You have just bought a " + staff + "!");
         document.getElementById("2").remove();
         document.getElementById("3").remove();
+        document.getElementById("drinks").setAttribute("onclick", "drinks()");
+        document.getElementById("food").setAttribute("onclick", "food()");
       }
     </script>
     <style>
       .outer {
         display: inline-block;
-        width: 150px;
+        width: 155px;
         height: 302px;
         background-color: rgb(92, 44, 44);
         margin-left: 10px;
       }
-      .inner {
+      .inner,
+      .food,
+      .drinks,
+      .pizza,
+      .burger,
+      .cola,
+      .beer {
+        background-size: 140px;
+        background-position: center;
         text-align: center;
         color: rgb(92, 44, 44);
-        display: inline-block;
         margin-top: 7px;
         margin-left: 8px;
-        width: 135px;
+        width: 140px;
         height: 140px;
-        background-color: rgb(255, 255, 255);
+        background-color: white;
+        background-size: 140px;
+        background-position: center;
+        font-family: "Caprasimo", cursive;
+        overflow: hidden;
+      }
+      .pizza {
+        background-image: url("/Main/images/shop/pizza.jpg");
+      }
+      .burger {
+        background-image: url("/Main/images/shop/burger.jpg");
+      }
+      .cola {
+        background-image: url("/Main/images/shop/cola.jpg");
+      }
+      .beer {
+        background-image: url("/Main/images/shop/beer.jpg");
       }
     </style>
   </body>

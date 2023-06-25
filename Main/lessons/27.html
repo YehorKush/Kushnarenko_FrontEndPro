@@ -5,28 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
-    <title>Local storage</title>
+    <title>Storage</title>
   </head>
   <body>
-    <h1>Local storage example</h1>
-    <input type="text" id="username-input" placeholder="Enter your name" />
-    <button onclick="saveUsername()">Save</button>
-    <p id="username-display"></p>
+    <input type="text" id="username" placeholder="Write Username" />
+
+    <br />
+    <button onclick="saveUserame()">Save</button>
+    <button onclick="showUserame()">Show</button>
+    <button onclick="deleteUserame()">Delete</button>
     <script>
-      function saveUsername() {
-        let username = document.getElementById("username-input").value;
-        localStorage.setItem("userName", username);
-        displayUserName();
+      // Cookies
+
+      // Local Storage
+      // Работает постоянно
+
+      // Session Storage
+      // Стирает после закрытия вкладки
+
+      function setCookies(name, value, days) {
+        expires = new Date();
+        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+
+        const cookie = `${name} = ${encodeURIComponent(
+          value
+        )}; expires=${expires.toUTCString()}`;
+        document.cookie = cookie;
+      }
+      function getCookie() {
+        const cookieArr = document.cookie.split(";");
+
+        for (let i = 0; i < cookieArr.length; i++) {
+          const cookiePair = cookieArr[i].split("=");
+          const cookieName = cookiePair[0].trim();
+
+          if (cookieName === name) {
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+      }
+      function deleteCookie() {
+        document.cookie = `${name}=; expire = Thu, 01 Jan 1970`;
       }
 
-      function displayUserName() {
-        let username = localStorage.getItem("userName");
-        let userNameDisplay = document.getElementById("username-display");
-
-        userNameDisplay.textContent = "Username: " + username;
+      function saveUserame() {
+        const username = document.getElementById("username").value;
+        setCookies("username", username, 7);
+        alert("Username saved in Cookie!");
       }
+      function showUserame() {
+        const username = getCookie("username");
 
-      displayUserName();
+        if (username) {
+          document.getElementById("display").textContent =
+            "Username: " + username;
+        }
+        if (username) {
+          document.getElementById("display").textContent =
+            "You do not have saved Username";
+        }
+      }
+      function deleteUserame() {
+        deleteCookie("username");
+        alert("Username deleted!");
+      }
     </script>
   </body>
 </html>
