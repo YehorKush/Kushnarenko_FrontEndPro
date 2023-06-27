@@ -12,12 +12,6 @@
     <title>40 Дз</title>
   </head>
   <body>
-    <div id="1" class="outer">
-      <div class="food" id="food" onclick="food()"><span>FOOD</span></div>
-      <div class="drinks" id="drinks" onclick="drinks()">
-        <span>DRINKS</span>
-      </div>
-    </div>
     <script>
       function createOuterDiv(id, classs) {
         let div = document.createElement("div");
@@ -36,6 +30,14 @@
       function deleteOnclick(id) {
         document.getElementById(id).setAttribute("onclick", "");
       }
+      function start() {
+        createOuterDiv("1", "outer");
+        createDiv("food", "food()", "FOOD", "1");
+        createDiv("drinks", "drinks()", "DRINKS", "1");
+      }
+
+      start(); // Початок програми
+
       function food() {
         deleteOnclick("drinks");
         deleteOnclick("food");
@@ -53,7 +55,7 @@
 
       function pizza() {
         createOuterDiv("3", "outer");
-        createDiv("inner", "form()", "Buy pizza", "3");
+        createDiv("inner", "form()", "BUY PIZZA", "3");
         createDiv(
           "inner",
           "",
@@ -67,7 +69,7 @@
         deleteOnclick("pizza");
         deleteOnclick("burger");
         createOuterDiv("3", "outer");
-        createDiv("inner", "form()", "Buy burger", "3");
+        createDiv("inner", "form()", "BUY BURGER", "3");
         createDiv(
           "inner",
           "",
@@ -79,7 +81,7 @@
         deleteOnclick("cola");
         deleteOnclick("beer");
         createOuterDiv("3", "outer");
-        createDiv("inner", "form()", "Buy cola", "3");
+        createDiv("inner", "form()", "BUY COLA", "3");
         createDiv(
           "inner",
           "",
@@ -91,7 +93,7 @@
         deleteOnclick("cola");
         deleteOnclick("beer");
         createOuterDiv("3", "outer");
-        createDiv("inner", "form()", "Buy beer", "3");
+        createDiv("inner", "form()", "BUY BEER", "3");
         createDiv(
           "inner",
           "",
@@ -101,6 +103,9 @@
       }
 
       function form() {
+        let div = document.getElementById("inner");
+        deleteOnclick(div.id);
+
         let formDiv = document.createElement("div");
         formDiv.setAttribute("id", "4");
         formDiv.setAttribute("class", "form");
@@ -110,14 +115,16 @@
         inputName.setAttribute("class", "inputName");
         inputName.setAttribute("placeholder", "Full name");
         inputName.setAttribute("type", "text");
+        inputName.setAttribute("value", "Yehor Kushnarenko");
         formDiv.appendChild(inputName);
 
         let cityChoose = document.createElement("select");
         cityChoose.setAttribute("class", "cityChoose");
+        cityChoose.setAttribute("id", "select");
         let cityArr = ["London", "Montreal", "New-York", "Las Vegas"];
         for (let i = 0; i < cityArr.length; i++) {
           let option = document.createElement("option");
-          option.value = "option" + (i + 1);
+          option.value = cityArr[i];
           option.text = cityArr[i];
           cityChoose.appendChild(option);
         }
@@ -127,45 +134,106 @@
         inputSklad.setAttribute("class", "inputSklad");
         inputSklad.setAttribute("placeholder", "NP number");
         inputSklad.setAttribute("type", "number");
+        inputSklad.setAttribute("value", "128");
         formDiv.appendChild(inputSklad);
 
         let inputQuantity = document.createElement("input");
         inputQuantity.setAttribute("class", "inputQuantity");
         inputQuantity.setAttribute("placeholder", "Quantity");
         inputQuantity.setAttribute("type", "number");
+        inputQuantity.setAttribute("value", "3");
         formDiv.appendChild(inputQuantity);
 
         let inputCard = document.createElement("input");
         inputCard.setAttribute("class", "inputCard");
         inputCard.setAttribute("placeholder", "Card number");
         inputCard.setAttribute("type", "number");
+        inputCard.setAttribute("value", "1111222233334444");
         formDiv.appendChild(inputCard);
 
         let inputComment = document.createElement("textarea");
         inputComment.setAttribute("class", "inputComment");
         inputComment.setAttribute("placeholder", "Your comments");
+        inputComment.textContent = "Second entrance";
         formDiv.appendChild(inputComment);
 
         let submitButton = document.createElement("button");
-        submitButton.setAttribute("class", "submitButton");
-        submitButton.setAttribute("onclick", "remove()");
-        submitButton.textContent = "Submit";
+        submitButton.setAttribute("class", "checkoutButton");
+        submitButton.setAttribute("onclick", "orderInfo()");
+        submitButton.textContent = "Checkout";
         formDiv.appendChild(submitButton);
       }
 
-      function remove() {
-        if (document.querySelectorAll("input")[0].value) {
+      function orderInfo() {
+        let name = document.querySelectorAll("input")[0].value;
+        if (name.trim().length > 0) {
           if (document.querySelectorAll("input")[1].value) {
             if (document.querySelectorAll("input")[3].value) {
-              alert("Thanks for your order!");
-              document.getElementById("2").remove();
-              document.getElementById("3").remove();
-              document.getElementById("4").remove();
-            } else alert("Enter your card number!");
-          } else alert("Enter your NP number!");
-        } else alert("Enter your name!");
-        document.getElementById("drinks").setAttribute("onclick", "drinks()");
-        document.getElementById("food").setAttribute("onclick", "food()");
+            } else {
+              alert("Enter your card number!");
+              return;
+            }
+          } else {
+            alert("Enter your NP number!");
+            return;
+          }
+        } else {
+          alert("Enter your name!");
+          return;
+        }
+
+        if (document.getElementById("5")) document.getElementById("5").remove();
+
+        let submitDiv = document.createElement("div");
+        submitDiv.setAttribute("id", "5");
+        submitDiv.setAttribute("class", "submitDiv");
+        document.body.appendChild(submitDiv);
+
+        let userName = document.createElement("span");
+        userName.setAttribute("class", "userName");
+        submitDiv.appendChild(userName);
+
+        let submitButton = document.createElement("button");
+        submitButton.setAttribute("class", "submitButton");
+        submitButton.setAttribute("onclick", "submit()");
+        submitButton.textContent = "Submit";
+        submitDiv.appendChild(submitButton);
+
+        let infoDiv = document.createElement("div");
+        infoDiv.setAttribute("class", "infoDiv");
+        submitDiv.appendChild(infoDiv);
+
+        for (let i = 0; i < 4; i++) {
+          let p = document.createElement("p");
+          p.textContent = document.querySelectorAll("input")[i].value;
+          infoDiv.appendChild(p);
+          console.log(p.textContent);
+          if (i == 0) {
+            let p2 = document.createElement("p");
+            p2.setAttribute("class", "info");
+            p2.textContent = document.getElementById("select").value;
+            infoDiv.appendChild(p2);
+            console.log(p2.textContent);
+          }
+          if (i == 3) {
+            let p2 = document.createElement("p");
+            p2.setAttribute("class", "info");
+            p2.textContent = document.querySelector("textarea").value;
+            infoDiv.appendChild(p2);
+            console.log(p2.textContent);
+          }
+          p.setAttribute("class", "info");
+        }
+      }
+
+      function submit() {
+        // alert("Thanks for your order!");
+        document.getElementById("1").remove();
+        document.getElementById("2").remove();
+        document.getElementById("3").remove();
+        document.getElementById("4").remove();
+        document.getElementById("5").remove();
+        start(); // Усе спочатку
       }
     </script>
     <style>
@@ -224,6 +292,7 @@
       .inputCard,
       .inputQuantity {
         font-family: "Caprasimo", cursive;
+        color: rgb(92, 44, 44);
         width: 465px;
         margin-left: 7px;
         margin-top: 8px;
@@ -238,6 +307,7 @@
       }
       .cityChoose {
         font-family: "Caprasimo", cursive;
+        color: rgb(92, 44, 44);
         width: 473px;
         margin-left: 7px;
         margin-top: 8px;
@@ -253,16 +323,18 @@
       }
       .inputComment {
         font-family: "Caprasimo", cursive;
-        width: 380px;
-        margin-left: 7px;
+        color: rgb(92, 44, 44);
+        width: 376px;
+        margin-left: 8px;
         margin-top: 8px;
         height: 62px;
         border-radius: 5px;
         resize: none;
       }
-      .submitButton {
+      .checkoutButton {
         font-family: "Caprasimo", cursive;
         background-color: white;
+        color: rgb(92, 44, 44);
         float: right;
         text-align: center;
         width: 80px;
@@ -273,10 +345,51 @@
         border-radius: 5px;
         transition: 0.8s;
       }
+      .checkoutButton:hover {
+        transition-duration: 0.4s;
+        background-color: rgb(92, 44, 44);
+        color: white;
+      }
+      .submitDiv {
+        width: 488px;
+        height: 250px;
+        background-color: rgb(92, 44, 44);
+        margin-left: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+      .submitButton {
+        font-family: "Caprasimo", cursive;
+        background-color: white;
+        position: absolute;
+        color: rgb(92, 44, 44);
+        text-align: center;
+        width: 80px;
+        height: 231px;
+        margin-left: 399px;
+        margin-top: 9px;
+        border: rgb(92, 44, 44);
+        border-radius: 5px;
+        transition: 0.8s;
+      }
       .submitButton:hover {
         transition-duration: 0.4s;
         background-color: rgb(92, 44, 44);
         color: white;
+      }
+      .infoDiv {
+        background-color: white;
+        position: absolute;
+        margin-top: 9px;
+        margin-left: 9px;
+        width: 380px;
+        height: 231px;
+        border-radius: 5px;
+      }
+      .info {
+        font-family: "Caprasimo", cursive;
+        color: rgb(92, 44, 44);
+        margin-left: 9px;
       }
     </style>
   </body>
