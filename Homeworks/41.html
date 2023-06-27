@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>41</title>
+  </head>
+  <body>
+    <div class="div1">
+      <input type="text" placeholder="Ім'я" class="name" id="firstName" />
+      <br />
+      <input
+        type="text"
+        placeholder="Прізвище"
+        class="lastName"
+        id="lastName"
+      />
+      <br />
+      <form>
+        <input
+          type="radio"
+          name="option"
+          id="option1"
+          class="radio"
+          value="Жiноча"
+        />
+        <label for="option1">Жiноча</label><br />
+
+        <input
+          type="radio"
+          name="option"
+          id="option2"
+          class="radio"
+          value="Чоловiча"
+        />
+        <label for="option2">Чоловiча</label><br />
+
+        <input
+          type="radio"
+          name="option"
+          id="option3"
+          class="radio"
+          value="Транс"
+        />
+        <label for="option3">Транс</label><br />
+      </form>
+      <select>
+        <option value="Харкiв">Харкiв</option>
+        <option value="Одесса">Одесса</option>
+        <option value="Львiв">Львiв</option>
+      </select>
+      <br />
+      <textarea rows="2" placeholder="Адреса"></textarea>
+      <form>
+        <input
+          type="checkbox"
+          name="option"
+          id="option1"
+          class="checkbox"
+          value="Англiйська"
+        />
+        <label for="option1">Англiйська</label><br />
+
+        <input
+          type="checkbox"
+          name="option"
+          id="option2"
+          class="checkbox"
+          value="Нiмецька"
+        />
+        <label for="option2">Нiмецька</label><br />
+
+        <input
+          type="checkbox"
+          name="option"
+          id="option3"
+          class="checkbox"
+          value="Французька"
+        />
+        <label for="option3">Французька</label><br />
+      </form>
+    </div>
+    <button onclick="data()">Зберегти</button>
+    <script>
+      function data() {
+        if (document.getElementById("1")) document.getElementById("1").remove();
+        let div = document.createElement("div");
+        div.setAttribute("id", "1");
+        div.setAttribute("class", "div2");
+        document.body.appendChild(div);
+
+        let firstName = document.createElement("p");
+        firstName.textContent =
+          "Ім'я: " + document.getElementById("firstName").value;
+        div.appendChild(firstName);
+
+        let lastName = document.createElement("p");
+        lastName.textContent =
+          "Прiзвище: " + document.getElementById("lastName").value;
+        div.appendChild(lastName);
+
+        let sex = document.createElement("p");
+        let options = document.querySelector("form");
+        div.appendChild(sex);
+        for (let i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            sex.textContent = "Cтать: " + options[i].value;
+          }
+        }
+
+        let city = document.createElement("p");
+        city.textContent = "Мiсто: " + document.querySelector("select").value;
+        div.appendChild(city);
+
+        let textArea = document.createElement("p");
+        textArea.textContent =
+          "Адреса: " + document.querySelector("textarea").value;
+        div.appendChild(textArea);
+
+        let language = document.createElement("p");
+        language.textContent = "Мови:";
+        div.appendChild(language);
+        let options2 = document.querySelectorAll("form")[1];
+        for (let i = 0; i < options2.length; i++) {
+          if (options2[i].checked) {
+            let p = document.createElement("p");
+            p.textContent = "-" + options2[i].value;
+            div.appendChild(p);
+          }
+        }
+      }
+    </script>
+    <style>
+      .name,
+      .lastName,
+      textarea {
+        font-family: "Montserrat", sans-serif;
+        width: 200px;
+        border-radius: 5px;
+        border-width: 3px;
+        resize: none;
+        margin-top: 7px;
+        margin-left: 6px;
+        border: 3px solid black;
+      }
+      .div1 {
+        width: 222px;
+        height: 293px;
+        background-color: rgb(0, 160, 0);
+        border-radius: 10px;
+        border: 3px solid black;
+      }
+      .div2 {
+        font-family: "Montserrat", sans-serif;
+        height: fit-content;
+        width: 222px;
+        background-color: rgb(0, 160, 0);
+        border-radius: 10px;
+        border: 3px solid black;
+        margin-top: 5px;
+      }
+      p {
+        margin-left: 10px;
+      }
+      .radio,
+      .checkbox {
+        font-family: "Montserrat", sans-serif;
+        margin-top: 7px;
+        margin-left: 10px;
+        font-size: 17px;
+      }
+      label {
+        font-family: "Montserrat", sans-serif;
+      }
+      select {
+        font-family: "Montserrat", sans-serif;
+        width: 209px;
+        border-radius: 5px;
+        border-width: 3px;
+        resize: none;
+        margin-top: 7px;
+        margin-left: 6px;
+        border: 3px solid black;
+      }
+      button {
+        font-family: "Montserrat", sans-serif;
+        font-size: 17px;
+        width: 227px;
+        height: 40px;
+        margin-top: 5px;
+        background-color: rgb(0, 160, 0);
+        border-radius: 10px;
+        border: 3px solid black;
+        transition: 0.8s;
+      }
+      button:hover {
+        transition-duration: 0.4s;
+        background-color: black;
+        color: rgb(0, 160, 0);
+      }
+    </style>
+  </body>
+</html>
