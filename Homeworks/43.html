@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>43</title>
+  </head>
+  <body>
+    <script>
+      // Пояснити чому є різниця між встановленою та виведеною годиною.
+      let date = new Date();
+
+      console.log("First date  ", date);
+
+      date.setFullYear(2024);
+      date.setMonth(11);
+      date.setDate(25);
+      date.setHours(12);
+      date.setMinutes(45);
+      date.setSeconds(30);
+
+      console.log("Second date", date);
+
+      // console.log('First date ', date); виводить початкову дату, яка
+      // представляє поточну дату та час. В другому випадку console.log
+      // ('Second date', date); виводить змінену дату, яка представляє
+      // дату та час, що були встановлені методами set.
+
+      // Після створення початкової дати, рядок коду date.setFullYear(2024)
+      // встановлює рік дати на 2024, date.setMonth(11) встановлює місяць
+      // на грудень (індекс місяців починається з 0, тому 11 представляє
+      // грудень), date.setDate(25) встановлює день на 25, date.setHours(12)
+      // встановлює години на 12, date.setMinutes(45) встановлює хвилини на
+      // 45, і date.setSeconds(30) встановлює секунди на 30.
+
+      // Ці методи використовуються для зміни відповідних
+      // полів дати в об'єкті Date. Після виконання цих методів,
+      // значення полів дати змінюються на відповідні значення.
+    </script>
+  </body>
+</html>
