@@ -8,10 +8,19 @@
     <title>39</title>
   </head>
   <body>
- <form>
-    <label for="country">Name</label>
-    <input type="text" name="" id="country">
- </form>
-    <script></script>
+    <script>
+      // Демонстрація різниці Screen Width/Screen Height
+      // та Screen Avail Width/Screen Avail Height
+
+      // Наприклад на ПК є панель задач, що займає 48 пiкселей, тож
+      // висота екрану - 864 пiкселя, а доступна для використання - 816
+
+      console.log("Screen height: " + window.screen.height); // 864
+      console.log("Screen available height: " + window.screen.availHeight); // 816
+
+      // Ширину, нажаль, через скрипт змiнити неможна( Але у Windows 10
+      // можна було поставити панель задач справа або злiва, i тодi б
+      // availHeight змiнився.
+    </script>
   </body>
 </html>
