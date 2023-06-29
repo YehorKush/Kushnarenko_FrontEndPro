@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
-    <title>39</title>
+    <title>45</title>
   </head>
   <body>
- <form>
-    <label for="country">Name</label>
-    <input type="text" name="" id="country">
- </form>
-    <script></script>
+    <script>
+      // 1) Пояснити вираз: /^\p{Emoji}+$/u
+      // 2) Пояснити модифікатори
+      //   y;
+      //   x;
+
+      let text = '1✅🐀😁';
+      let regExp = new RegExp(/^\p{Emoji}+$/u);
+      console.log(regExp.test(text));
+    </script>
   </body>
 </html>

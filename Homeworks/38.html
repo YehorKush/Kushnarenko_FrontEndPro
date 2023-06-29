@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>38</title>
+  </head>
+  <body>
+    <button onclick="openPopup()">Open YouTube</button>
+    <button onclick="closePopup()">Close window</button>
+    <script>
+      // Написати приклад використання методів функцій
+      // window.open()/window.close().
+
+      let youTubeWindow;
+
+      // open:
+      function openPopup() {
+        youtubeWindow = window.open(
+          "https://www.youtube.com/",
+          "Popup",
+          "width=500,height=300"
+        );
+      }
+
+      // close:
+      function closePopup() {
+        youtubeWindow.close();
+      }
+    </script>
+  </body>
+</html>

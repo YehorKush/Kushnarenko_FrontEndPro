@@ -4,12 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
     <title>25 Заняття</title>
   </head>
   <body>
     <button onclick="reloadPage()">Reloading the page</button>
+    <button onclick="openPopup()">Open popup</button>
+    <input
+      type="text"
+      id="urlInput"
+      placeholder="url"
+      value="https://www.youtube.com/"
+    />
+    <button onclick="redirectTo()">Redirect</button>
+    <h1>Screen characteristics</h1>
+    <ul>
+      <li>Screen Width: <span id="screenWidth"></span></li>
+      <li>Screen Height: <span id="screenHeight"></span></li>
+      <li>Screen Avail Width: <span id="screenAvailWidth"></span></li>
+      <li>Screen Avail Height: <span id="screenAvailHeight"></span></li>
+      <li>Color depth: <span id="colorDepth"></span></li>
+      <li>Pixel ratio: <span id="pixelratio"></span></li>
+    </ul>
+
+    <button onclick="goBack()">Back</button>
+    <button onclick="goForward()">Forward</button>
+    <button onclick="goToPage()">Go To Page</button>
+
+    <h1>Navigator Object Example</h1>
+    <p id="userAgent"></p>
+    <p id="platform"></p>
+    <p id="language"></p>
+    <p id="cookiesEnabled"></p>
+    <p id="onlineStatus"></p>
+
     <script>
       // Объект window это окно браузера. Он содержит такие методы как
       // document, navigation, размер и положение окна, взаимодействие
@@ -18,7 +46,98 @@
       function reloadPage() {
         location.reload();
       }
-      console.log(window.screen.width);
+      // PopUp - всплывающее окно которое может иметь любой адрес
+      openPopup = () => {
+        window.open(
+          "https://www.youtube.com/",
+          "Popup",
+          "width=500,height=300"
+        );
+      };
+      redirectTo = () => {
+        let url = document.getElementById("urlInput").value;
+        location.href = url;
+      };
+      // window.screen
+      // Дает возможность работать с настройками разных экранов.
+      let screenWidth = window.screen.width;
+      let screenHeight = window.screen.height;
+      let screenAvailWidth = window.screen.availWidth;
+      let screenAvailHeight = window.screen.availHeight;
+      let screenColorDepth = window.screen.colorDepth;
+      let screenPixelratio = window.devicePixelRatio;
+
+      document.getElementById("screenWidth").textContent = screenWidth + "px";
+      document.getElementById("screenHeight").textContent = screenHeight + "px";
+      document.getElementById("screenAvailWidth").textContent =
+        screenAvailWidth + "px";
+      document.getElementById("screenAvailHeight").textContent =
+        screenAvailHeight + "px";
+      document.getElementById("colorDepth").textContent =
+        screenColorDepth + "bit";
+      document.getElementById("pixelratio").textContent = screenPixelratio;
+
+      // История вкладок
+      // Объект History
+      function goBack() {
+        history.back();
+      }
+      function goForward() {
+        history.forward();
+      }
+      function goToPage() {
+        let newState = { page: "newPage" };
+        let newTitle = "New Page";
+        let newUrl = "http://127.0.0.1:5500/Main/lessons/26.html";
+
+        history.pushState(newState, newTitle, newUrl);
+        location.reload();
+      }
+      // Navigator
+      // Так же является частью window. Дает информацию про браузер,
+      // устройство пользователя. Платформа, агент, язык и тд.
+      // navigator.userAgent содержит информацию про браузер и операционную
+      // систему
+      console.log(navigator.userAgent);
+      console.log(navigator.platform); // Win32
+      console.log(navigator.language); // en
+
+      // navigator.geolocation.getCurrentPosition()
+      // информация про геолокацию пользователя
+
+      console.log(navigator.onLine); // true/false
+
+      let userAgent = navigator.userAgent;
+      let platform = navigator.platform;
+      let language = navigator.language;
+      let cookiesEnabled = navigator.cookieEnabled;
+      let onlineStatus = navigator.onLine;
+
+      document.getElementById("userAgent").textContent =
+        "User Agent: " + userAgent;
+      document.getElementById("platform").textContent = "Platform: " + platform;
+      document.getElementById("language").textContent = "Language: " + language;
+      document.getElementById("cookiesEnabled").textContent =
+        "Cookies Enabled: " + cookiesEnabled;
+      document.getElementById("onlineStatus").textContent =
+        "Online Status: " + onlineStatus;
+
+      yo = () => {
+        console.log("Yo! - set timeout 1");
+      };
+      // let timeout = setTimeout(yo, 1000);
+
+      // yo = () => {
+      //   console.log("Yo! - set interval 1");
+      // };
+      let interval = setInterval(yo, 1000);
+
+      // let timeout2 = setTimeout(yo, 1000);
+      // clearTimeout(timeout);
+
+      setTimeout(() => {
+        clearInterval(interval);
+      }, 6000);
     </script>
   </body>
 </html>
