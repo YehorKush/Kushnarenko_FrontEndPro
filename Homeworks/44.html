@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>44</title>
+  </head>
+  <body>
+    <script>
+      // Як отримати дату+час з мілісекунд іншим стособом ніж в доданому коду?
+
+      let startDate = new Date("2023-06-23");
+
+      let endDate = new Date("2023-06-30");
+
+      // console.log(startDate);
+
+      let timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+
+      console.log(timeDiff);
+
+      let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      // як зробити це ж використовуючи Date
+
+      console.log(
+        (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+      );
+    </script>
+  </body>
+</html>

@@ -6,69 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
     <title>Storage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <input type="text" id="username" placeholder="Write Username" />
-
-    <br />
-    <button onclick="saveUserame()">Save</button>
-    <button onclick="showUserame()">Show</button>
-    <button onclick="deleteUserame()">Delete</button>
+    <div>
+      <h1>Local Storage</h1>
+      <input type="text" id="inputLocal" placeholder="Enter data" />
+      <button onclick="saveLocalData()">Save</button>
+      <button onclick="retrieveLocalData()">Show</button>
+      <p id="outputLocal"></p>
+    </div>
+    <div>
+      <h1>Session Storage</h1>
+      <input type="text" id="input" placeholder="Enter data" />
+      <button onclick="saveData()">Save</button>
+      <button onclick="retrieveData()">Show</button>
+      <p id="output"></p>
+    </div>
     <script>
-      // Cookies
-
-      // Local Storage
-      // Работает постоянно
-
-      // Session Storage
-      // Стирает после закрытия вкладки
-
-      function setCookies(name, value, days) {
-        expires = new Date();
-        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-
-        const cookie = `${name} = ${encodeURIComponent(
-          value
-        )}; expires=${expires.toUTCString()}`;
-        document.cookie = cookie;
+      function saveLocalData() {
+        let inputData = document.getElementById("inputLocal").value;
+        localStorage.setItem("data", inputData);
       }
-      function getCookie() {
-        const cookieArr = document.cookie.split(";");
-
-        for (let i = 0; i < cookieArr.length; i++) {
-          const cookiePair = cookieArr[i].split("=");
-          const cookieName = cookiePair[0].trim();
-
-          if (cookieName === name) {
-            return decodeURIComponent(cookiePair[1]);
-          }
-        }
-      }
-      function deleteCookie() {
-        document.cookie = `${name}=; expire = Thu, 01 Jan 1970`;
+      function retrieveLocalData() {
+        let data = localStorage.getItem("data");
+        document.getElementById("outputLocal").textContent = "Data: " + data;
       }
 
-      function saveUserame() {
-        const username = document.getElementById("username").value;
-        setCookies("username", username, 7);
-        alert("Username saved in Cookie!");
+      function saveData() {
+        let inputData = document.getElementById("input").value;
+        sessionStorage.setItem("data", inputData);
       }
-      function showUserame() {
-        const username = getCookie("username");
-
-        if (username) {
-          document.getElementById("display").textContent =
-            "Username: " + username;
-        }
-        if (username) {
-          document.getElementById("display").textContent =
-            "You do not have saved Username";
-        }
-      }
-      function deleteUserame() {
-        deleteCookie("username");
-        alert("Username deleted!");
+      function retrieveData() {
+        let data = sessionStorage.getItem("data");
+        document.getElementById("output").textContent = "Data: " + data;
       }
     </script>
+    <style>
+      div {
+        font-family: "Caprasimo", cursive;
+        border: 2px solid black;
+        margin-top: 10px;
+        width: 300px;
+        height: 150px;
+        background-color: rgb(255, 100, 193);
+        border-radius: 4px;
+      }
+      input {
+        border: 2px solid black;
+        border-radius: 4px;
+        margin-left: 10px;
+        margin-right: 5px;
+      }
+      h1 {
+        text-align: center;
+      }
+      p {
+        margin-left: 120px;
+      }
+      button {
+        border: 2px solid black;
+        border-radius: 4px;
+      }
+    </style>
   </body>
 </html>
