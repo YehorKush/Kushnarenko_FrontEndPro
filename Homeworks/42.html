@@ -13,6 +13,14 @@
   </head>
   <body>
     <script>
+      function start() {
+        createButton("ordersButton", "ordersButton", "ORDERS", "ordersList()");
+        if (!document.getElementById("5")) createOuterDiv("5", "ordersDiv");
+        createOuterDiv("6", "exactOrderDiv");
+        createOuterDiv("1", "outer");
+        createDiv("food", "food()", "FOOD", "1");
+        createDiv("drinks", "drinks()", "DRINKS", "1");
+      }
       function createOuterDiv(id, classs) {
         let div = document.createElement("div");
         div.setAttribute("id", id);
@@ -27,13 +35,16 @@
         div.textContent = text;
         document.getElementById(outerId).appendChild(div);
       }
+      function createButton(classs, id, text, func) {
+        let button = document.createElement("button");
+        button.setAttribute("class", classs);
+        button.setAttribute("id", id);
+        button.setAttribute("onclick", func);
+        button.textContent = text;
+        document.body.appendChild(button);
+      }
       function deleteOnclick(id) {
         document.getElementById(id).setAttribute("onclick", "");
-      }
-      function start() {
-        createOuterDiv("1", "outer");
-        createDiv("food", "food()", "FOOD", "1");
-        createDiv("drinks", "drinks()", "DRINKS", "1");
       }
 
       start(); // Початок програми
@@ -158,13 +169,13 @@
         formDiv.appendChild(inputComment);
 
         let submitButton = document.createElement("button");
-        submitButton.setAttribute("class", "checkoutButton");
-        submitButton.setAttribute("onclick", "orderInfo()");
-        submitButton.textContent = "Checkout";
+        submitButton.setAttribute("class", "BuyButton");
+        submitButton.setAttribute("onclick", "buy()");
+        submitButton.textContent = "Buy";
         formDiv.appendChild(submitButton);
       }
 
-      function orderInfo() {
+      function buy() {
         let name = document.querySelectorAll("input")[0].value;
         if (name.trim().length > 0) {
           if (document.querySelectorAll("input")[1].value) {
@@ -182,58 +193,94 @@
           return;
         }
 
-        if (document.getElementById("5")) document.getElementById("5").remove();
+        let userName = document.querySelectorAll("input")[0].value;
+        let city = document.getElementById("select").value;
+        let np = document.querySelectorAll("input")[1].value;
+        let quantity = document.querySelectorAll("input")[2].value;
+        let cardNumber = document.querySelectorAll("input")[3].value;
+        let comment = document.querySelector("textarea").value;
 
-        let submitDiv = document.createElement("div");
-        submitDiv.setAttribute("id", "5");
-        submitDiv.setAttribute("class", "submitDiv");
-        document.body.appendChild(submitDiv);
+        let data = {
+          name: userName,
+          city: city,
+          np: np,
+          quantity: quantity,
+          cardNumber: cardNumber,
+          comment: comment,
+        };
 
-        let userName = document.createElement("span");
-        userName.setAttribute("class", "userName");
-        submitDiv.appendChild(userName);
+        let ordersMap = new Map();
 
-        let submitButton = document.createElement("button");
-        submitButton.setAttribute("class", "submitButton");
-        submitButton.setAttribute("onclick", "submit()");
-        submitButton.textContent = "Submit";
-        submitDiv.appendChild(submitButton);
-
-        let infoDiv = document.createElement("div");
-        infoDiv.setAttribute("class", "infoDiv");
-        submitDiv.appendChild(infoDiv);
-
-        for (let i = 0; i < 4; i++) {
-          let p = document.createElement("p");
-          p.textContent = document.querySelectorAll("input")[i].value;
-          infoDiv.appendChild(p);
-          console.log(p.textContent);
-          if (i == 0) {
-            let p2 = document.createElement("p");
-            p2.setAttribute("class", "info");
-            p2.textContent = document.getElementById("select").value;
-            infoDiv.appendChild(p2);
-            console.log(p2.textContent);
-          }
-          if (i == 3) {
-            let p2 = document.createElement("p");
-            p2.setAttribute("class", "info");
-            p2.textContent = document.querySelector("textarea").value;
-            infoDiv.appendChild(p2);
-            console.log(p2.textContent);
-          }
-          p.setAttribute("class", "info");
+        let counter = localStorage.getItem("counter");
+        if (!counter) {
+          ordersArr = "";
+          counter = 216;
+          localStorage.setItem("counter", counter);
+        } else {
+          counter++;
+          localStorage.setItem("counter", counter);
         }
-      }
 
-      function submit() {
-        // alert("Thanks for your order!");
+        console.log(localStorage.length);
+        localStorage.setItem("Order№" + counter, JSON.stringify(data));
+
+        alert("Your order number is " + counter);
+        let a = localStorage.getItem("Order№" + counter);
+        // console.log(JSON.parse(a));
+
         document.getElementById("1").remove();
         document.getElementById("2").remove();
         document.getElementById("3").remove();
         document.getElementById("4").remove();
-        document.getElementById("5").remove();
+        document.getElementById("ordersButton").remove();
         start(); // Усе спочатку
+      }
+
+      function ordersList() {
+        let ordersDiv = document.getElementById("5");
+
+        ordersDiv.style.display === "block"
+          ? (ordersDiv.style.display = "none")
+          : (ordersDiv.style.display = "block");
+
+        localStorage.getItem("Order№216")
+          ? (ordersDiv.textContent = "")
+          : (ordersDiv.textContent = "EMPTY");
+
+        let ordersMap = new Map();
+
+        for (let key in localStorage) {
+          if (localStorage.hasOwnProperty(key)) {
+            let value = localStorage.getItem(key);
+            ordersMap.set(key, value);
+          }
+          console.log();
+          if (key.split("№")[0] == "Order") {
+            let button = document.createElement("button");
+            button.textContent = key;
+            button.setAttribute("class", "orderButton");
+            button.addEventListener("click", () => {
+              showOrderInfo(key);
+            });
+            ordersDiv.appendChild(button);
+          }
+        }
+      }
+      function showOrderInfo(number) {
+        let chooseOrder = document.getElementById("6");
+
+        chooseOrder.style.display === "block"
+          ? (chooseOrder.style.display = "none")
+          : (chooseOrder.style.display = "block");
+
+        console.log(number);
+        let info = JSON.parse(localStorage.getItem(number));
+        console.log(info);
+        chooseOrder.textContent = `${number}........................
+        Name: ${info.name}
+        Quantity:...........................${info.quantity}
+        City:..........................${info.city}
+        NP:.................................${info.np}`;
       }
     </script>
     <style>
@@ -244,6 +291,7 @@
         background-color: rgb(92, 44, 44);
         margin-left: 10px;
         border-radius: 10px;
+        margin-top: 50px;
       }
       .inner,
       .food,
@@ -331,8 +379,9 @@
         border-radius: 5px;
         resize: none;
       }
-      .checkoutButton {
+      .BuyButton {
         font-family: "Caprasimo", cursive;
+        font-size: medium;
         background-color: white;
         color: rgb(92, 44, 44);
         float: right;
@@ -345,7 +394,7 @@
         border-radius: 5px;
         transition: 0.8s;
       }
-      .checkoutButton:hover {
+      .BuyButton:hover {
         transition-duration: 0.4s;
         background-color: rgb(92, 44, 44);
         color: white;
@@ -390,6 +439,62 @@
         font-family: "Caprasimo", cursive;
         color: rgb(92, 44, 44);
         margin-left: 9px;
+      }
+      .ordersButton {
+        font-family: "Caprasimo";
+        font-size: medium;
+        color: rgb(92, 44, 44);
+        position: absolute;
+        height: 45px;
+        background-color: white;
+        margin-left: 10px;
+        border: 7px solid rgb(92, 44, 44);
+        border-radius: 10px;
+        width: 490px;
+        transition: 0.8s;
+      }
+      .ordersButton:hover {
+        transition-duration: 0.4s;
+        background-color: rgb(92, 44, 44);
+        color: white;
+      }
+      .ordersDiv {
+        display: none;
+        position: absolute;
+        font-family: "Caprasimo";
+        font-size: medium;
+        text-align: center;
+        color: rgb(92, 44, 44);
+        border: 8px solid rgb(92, 44, 44);
+        border-radius: 10px;
+        margin-left: 505px;
+        width: 240px;
+        height: 597px;
+        overflow-y: auto;
+      }
+      .orderButton {
+        font-family: "Caprasimo";
+        border: 4px solid rgb(92, 44, 44);
+        width: 100%;
+        height: 30px;
+        transition: 0.8s;
+      }
+      .orderButton:hover {
+        transition-duration: 0.4s;
+        background-color: rgb(92, 44, 44);
+        color: white;
+      }
+      .exactOrderDiv {
+        display: none;
+        position: absolute;
+        font-family: "Caprasimo";
+        font-size: medium;
+        color: rgb(92, 44, 44);
+        border: 8px solid rgb(92, 44, 44);
+        border-radius: 10px;
+        margin-left: 768px;
+        width: 240px;
+        height: 200px;
       }
     </style>
   </body>
