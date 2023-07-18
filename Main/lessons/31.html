@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>31 Заняття</title>
+  </head>
+  <body>
+    <script>
+      // Spread/Rest
+
+      // Spread - распаковывает значения из массива
+      let arr1 = [1, 2, 3];
+      let arr2 = [...arr1, 4, 5, 6]; // [1,2,3,4,5,6]
+
+      let obj1 = { a: 1, b: 2 };
+      let obj2 = { ...obj1, c: 3, d: 4 }; // {a: 1, b: 2, c: 3, d: 4}
+
+      // Кстати arr1 - массив, а ...arr1 - чисто 1 2 3
+
+      // Rest - запаковывает значения в массив
+      function sum(...numbers) {
+        return numbers.reduce((total, num) => {
+          total + num, 0;
+        });
+      }
+      console.log(sum([1, 2, 3, 4, 5]));
+
+      let person = { name: "John", age: 30, city: "NewYork" };
+      //   let { name, age, city } = person;
+      //   console.log(name); // John
+      //   console.log(age); // 30
+      //   console.log(city); // NewYork
+
+      let [a = 1, b = 2] = [10];
+
+      console.log(a); // 10
+      console.log(b); // 2
+
+      //   let { name } = person;
+      //   console.log(name);
+
+      // Деструктуризация:
+
+      let user = {
+        name: "Yehor",
+        age: 20,
+        adress: {
+          city: "Montreal",
+          country: "Canada",
+        },
+      };
+
+      let {
+        name,
+        adress: { city, country },
+      } = user;
+
+      console.log(name); // Yehor
+      console.log(city); // Montreal
+      console.log(country); // Canada
+
+      // Symbol - примитивный тип данных (хранятся в стеке, можно
+      // перезаписать, не ссылается на объект)(не примитивный тип данных
+      // хранится в куче и имеет ссылку на себя вместо создания новых
+      // екземпляров)
+
+      // Это уникальное значение, которому можно дать description
+
+      let sym1 = Symbol();
+      let sym2 = Symbol("description");
+      console.log(sym1); // Symbol()
+      console.log(sym2); // Symbol(description)
+
+      let key = Symbol("myKey");
+      //   let obj = {};
+
+      //   obj[key] = "value";
+      //   console.log(obj[key]); // value
+
+      let key1 = Symbol("myKey1");
+      let key2 = Symbol("myKey2");
+
+      let obj = {
+        [key1]: "value 1",
+        [key2]: "value 2",
+        regularKey: "regular value",
+      };
+
+      let symbols = Object.getOwnPropertySymbols(obj);
+      console.log(symbols); // [Symbol(myKey1), Symbol(myKey2)]
+      
+      symbols = Object.getOwnPropertyNames(obj);
+      console.log(symbols); // ['regularKey']
+    </script>
+  </body>
+</html>

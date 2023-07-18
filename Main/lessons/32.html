@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Main/images/favicons/logo_16x16.ico" />
+    <title>32 Дз</title>
+  </head>
+  <body>
+    <script>
+      // Итераторы, генераторы
+
+      //   const arr = [1, 2, 3];
+      //   const iterator = arr[Symbol.iterator]();
+      //   for (const element of iterator) {
+      //     console.log(element);
+      //   }
+
+      //   let obj = {
+      //     a: 1,
+      //     b: 2,
+      //     c: 3,
+      //   };
+      //   const iterator2 = Object.values(obj)[Symbol.iterator]();
+      //   for (const element of iterator2) {
+      //     console.log(element);
+      //   }
+
+      // Метод next
+
+      // value - это значение, а done - это конец итерации
+      const myArray = [1, 2, 3];
+      const iterator = myArray[Symbol.iterator]();
+      console.log(iterator.next()); // {value: 1, done: false}
+      console.log(iterator.next()); // {value: 2, done: false}
+      console.log(iterator.next()); // {value: 3, done: false}
+      console.log(iterator.next()); // {value: undefined, done: true}
+      console.log(iterator.next()); // {value: undefined, done: true}
+
+      // Сумма элементов массива через итератор
+      function sum(arr) {
+        let sum = 0;
+        const iterator = arr[Symbol.iterator]();
+        let next = iterator.next();
+        while (!next.done) {
+          sum += next.value;
+          next = iterator.next();
+        }
+        return sum;
+      }
+
+      console.log(sum(myArray)); // 6
+
+      // По сути итератор идет по массиву, объекту, коллекции и тд, и держит
+      // информацию про каждый шаг и конец
+      // Метод next возвращает ОБЪЕКТ с двумя свойставми
+
+      // Генераторы
+      function* numberGenerator() {
+        let num = 1;
+        while (true) {
+          yield num;
+          num++;
+        }
+      }
+
+      const generator = numberGenerator();
+
+      console.log(generator.next().value);
+      console.log(generator.next().value)
+      console.log(generator.next().value)
+      console.log(generator.next().value)
+      console.log(generator.next().value)
+    </script>
+    <style></style>
+  </body>
+</html>

@@ -133,8 +133,9 @@
 //   }, 1500);
 // });
 
-// // Promise.all() принимает массив промисов и возвращает новый промис
-// // когда все остальные выполнятся
+// Promise.all() принимает массив промисов и возвращает новый промис
+// когда все остальные выполнятся. Если в одном промисе будет reject,
+// вернет чисто ошибку вместо массива
 
 // Promise.all([firstPromise, secondPromise]).then((results) => {
 //   console.log("Result: ", results);
@@ -147,9 +148,6 @@
 // Promise.race([firstPromise, secondPromise]).then((result) => {
 //   console.log("Result: ", result);
 // }); // Result:  Second Promise
-
-// // Promise.allSettled() принимает массив промисов и возвращает первый
-// // выполнившийся
 
 // Promise.allSettled([firstPromise, secondPromise]).then((result) => {
 //   console.log("Result: ", result);
@@ -175,4 +173,3 @@
 // }
 
 // doSomething()
-
